@@ -9,5 +9,5 @@ build:
 #	cd sf-processor && git checkout master && make docker-build
 
 clean:
-	docker rmi -f yaofengchen/sf-collector:1.2
-	docker rmi -f yaofengchen/sf-processor:1.2
+	docker rmi -f yaofengchen/sf-collector:1.4
+	docker rmi -f yaofengchen/sf-processor:1.4

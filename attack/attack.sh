@@ -27,5 +27,10 @@ echo
 sleep 1
 
 echo "Step 6" >&2
+ln -s /bin/mount mymount
+echo
+sleep 1
+
+echo "Step 7" >&2
 wget -c -P /tmp https://sysflow.readthedocs.io/en/latest/quick.html 2>&1
 echo
