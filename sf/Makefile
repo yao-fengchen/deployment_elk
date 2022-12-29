@@ -5,9 +5,9 @@ stop:
 	docker-compose down
 
 build:
-#	-git clone https://github.com/sysflow-telemetry/sf-processor.git
-#	cd sf-processor && git checkout master && make docker-build
+	docker pull yaofengchen/sf-collector:1.5
+	docker pull yaofengchen/sf-processor:1.5
 
 clean:
-	docker rmi -f yaofengchen/sf-collector:1.4
-	docker rmi -f yaofengchen/sf-processor:1.4
+	docker rmi -f yaofengchen/sf-collector:1.5
+	docker rmi -f yaofengchen/sf-processor:1.5

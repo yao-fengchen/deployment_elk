@@ -4,33 +4,38 @@ sleep 20
 echo "Step 1" >&2
 uname -a
 echo
-sleep 3
+sleep 2
 
 echo "Step 2 ">&2
-df
+cp /bin/df mydf
 echo
-sleep 1
+sleep 2
 
 echo "Step 3" >&2
-ps -ef
+mkdir host
 echo
 sleep 2
 
 echo "Step 4" >&2
-ls /home
+ln -s /bin/mount ttt
 echo
-sleep 3
+sleep 2
 
 echo "Step 5" >&2
-cat /etc/passwd
+ln -s /bin/cat mycat
 echo
-sleep 1
+sleep 2
 
 echo "Step 6" >&2
-ln -s /bin/mount mymount
+./ttt /dev/sda1 host/
 echo
-sleep 1
+sleep 2
 
 echo "Step 7" >&2
-wget -c -P /tmp https://sysflow.readthedocs.io/en/latest/quick.html 2>&1
+./mydf
+echo
+sleep 2
+
+echo "Step 8" >&2
+./mycat /etc/passwd
 echo
