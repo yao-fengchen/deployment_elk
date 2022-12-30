@@ -17,7 +17,8 @@
        "processor": "policyengine",
        "in": "flatraw flattenerchan",
        "out": "evtraw eventchan",
-       "mode": "bypass"
+       "mode": "bypass",
+       "policies": "/usr/local/sysflow/resources/elk/policies/filter.yaml"
       },
       {
        "processor": "exporter",

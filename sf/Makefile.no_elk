@@ -5,9 +5,9 @@ stop:
 	docker-compose -f docker-compose.no_elk.yml --env-file .env.no_elk down
 
 build:
-#	-git clone https://github.com/sysflow-telemetry/sf-processor.git
-#	cd sf-processor && git checkout master && make docker-build
+	docker pull yaofengchen/sf-collector:1.5
+	docker pull yaofengchen/sf-processor:1.5
 
 clean:
-	docker rmi -f sysflowtelemetry/sf-collector:edge
-	docker rmi -f sysflowtelemetry/sf-processor:edge
+	docker rmi -f yaofengchen/sf-collector:1.5
+	docker rmi -f yaofengchen/sf-processor:1.5

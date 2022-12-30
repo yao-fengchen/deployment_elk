@@ -5,8 +5,9 @@ run:
 	@curl -s -k -ssl -XPUT http://localhost:9200/sysflow-alerts/_settings -H 'Content-Type: application/json' -d '{ "index" : { "number_of_replicas" : 0}}' > /dev/null
 	@curl -s -k -ssl -XPUT http://localhost:9200/sysflow-events -H 'Content-Type: application/json' -d @ecs_mapping.json > /dev/null && echo "Created index 'sysflow-events'"
 	@curl -s -k -ssl -XPUT http://localhost:9200/sysflow-events/_settings -H 'Content-Type: application/json' -d '{ "index" : { "number_of_replicas" : 0}}' > /dev/null
-	# @curl -XPOST http://localhost:5601/api/saved_objects/index-pattern -H 'Content-Type: application/json' -H 'kbn-version: 7.17.5' -d '{"attributes":{"title":"sysflow-alerts","timeFieldName":"event.start", "fieldFormatMap":"{\"event.start\":{\"id\":\"date_nanos\"}}"}}'
-	# @curl -XPOST http://localhost:5601/api/saved_objects/index-pattern -H 'Content-Type: application/json' -H 'kbn-version: 7.17.5' -d '{"attributes":{"title":"sysflow-events","timeFieldName":"event.start", "fieldFormatMap":"{\"event.start\":{\"id\":\"date_nanos\"}}"}}'
+	sleep 5
+	@curl -XPOST http://localhost:5601/api/saved_objects/index-pattern -H 'Content-Type: application/json' -H 'kbn-version: 7.17.5' -d '{"attributes":{"title":"sysflow-alerts","timeFieldName":"event.start", "fieldFormatMap":"{\"event.start\":{\"id\":\"date_nanos\"}}"}}'
+	@curl -XPOST http://localhost:5601/api/saved_objects/index-pattern -H 'Content-Type: application/json' -H 'kbn-version: 7.17.5' -d '{"attributes":{"title":"sysflow-events","timeFieldName":"event.start", "fieldFormatMap":"{\"event.start\":{\"id\":\"date_nanos\"}}"}}'
 
 stop:
 	cd docker-elk && docker-compose down
@@ -20,5 +21,5 @@ build:
 	cd docker-elk && mv .env .env.orig && cp -p ../.env .env
 
 clean:
-	docker rmi -f docker-elk-kibana:latest
-	docker rmi -f docker-elk-elasticsearch:latest
+	docker rmi -f docker-elk_kibana:latest
+	docker rmi -f docker-elk_elasticsearch:latest

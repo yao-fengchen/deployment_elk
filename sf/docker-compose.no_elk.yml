@@ -2,7 +2,7 @@ version: "3.5"
 services:
   sf-processor:
     container_name: sf-processor
-    image: yaofengchen/sf-processor:1.4
+    image: yaofengchen/sf-processor:1.5
     privileged: true
     volumes:
       - socket-vol:/sock/
@@ -15,7 +15,7 @@ services:
       EXPORTER_EXPORT: terminal
   sf-collector:
     container_name: sf-collector
-    image: yaofengchen/sf-collector:1.4
+    image: yaofengchen/sf-collector:1.5
     depends_on:
       - "sf-processor"
     privileged: true

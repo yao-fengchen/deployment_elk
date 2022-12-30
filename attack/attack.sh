@@ -1,5 +1,5 @@
 echo "Waiting..." >&2
-sleep 20
+sleep 60
 
 echo "Step 1" >&2
 uname -a
