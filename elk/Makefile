@@ -1,13 +1,13 @@
 run:
 	cd docker-elk && docker-compose up -d
 	@./wait_for_es.sh
-	@curl -s -k -ssl -XPUT http://localhost:9200/sysflow-alerts -H 'Content-Type: application/json' -d @ecs_mapping.json > /dev/null && echo "Created index 'sysflow-alerts'"
-	@curl -s -k -ssl -XPUT http://localhost:9200/sysflow-alerts/_settings -H 'Content-Type: application/json' -d '{ "index" : { "number_of_replicas" : 0}}' > /dev/null
-	@curl -s -k -ssl -XPUT http://localhost:9200/sysflow-events -H 'Content-Type: application/json' -d @ecs_mapping.json > /dev/null && echo "Created index 'sysflow-events'"
-	@curl -s -k -ssl -XPUT http://localhost:9200/sysflow-events/_settings -H 'Content-Type: application/json' -d '{ "index" : { "number_of_replicas" : 0}}' > /dev/null
+	@curl -s -k -ssl -XPUT http://localhost:9200/alerts -H 'Content-Type: application/json' -d @ecs_mapping.json > /dev/null && echo "Created index 'alerts'"
+	@curl -s -k -ssl -XPUT http://localhost:9200/alerts/_settings -H 'Content-Type: application/json' -d '{ "index" : { "number_of_replicas" : 0}}' > /dev/null
+	@curl -s -k -ssl -XPUT http://localhost:9200/events -H 'Content-Type: application/json' -d @ecs_mapping.json > /dev/null && echo "Created index 'events'"
+	@curl -s -k -ssl -XPUT http://localhost:9200/events/_settings -H 'Content-Type: application/json' -d '{ "index" : { "number_of_replicas" : 0}}' > /dev/null
 	sleep 5
-	@curl -XPOST http://localhost:5601/api/saved_objects/index-pattern -H 'Content-Type: application/json' -H 'kbn-version: 7.17.5' -d '{"attributes":{"title":"sysflow-alerts","timeFieldName":"event.start", "fieldFormatMap":"{\"event.start\":{\"id\":\"date_nanos\"}}"}}'
-	@curl -XPOST http://localhost:5601/api/saved_objects/index-pattern -H 'Content-Type: application/json' -H 'kbn-version: 7.17.5' -d '{"attributes":{"title":"sysflow-events","timeFieldName":"event.start", "fieldFormatMap":"{\"event.start\":{\"id\":\"date_nanos\"}}"}}'
+	@curl -XPOST http://localhost:5601/api/saved_objects/index-pattern -H 'Content-Type: application/json' -H 'kbn-version: 7.17.5' -d '{"attributes":{"title":"alerts","timeFieldName":"event.start", "fieldFormatMap":"{\"event.start\":{\"id\":\"date_nanos\"}}"}}'
+	@curl -XPOST http://localhost:5601/api/saved_objects/index-pattern -H 'Content-Type: application/json' -H 'kbn-version: 7.17.5' -d '{"attributes":{"title":"events","timeFieldName":"event.start", "fieldFormatMap":"{\"event.start\":{\"id\":\"date_nanos\"}}"}}'
 
 stop:
 	cd docker-elk && docker-compose down

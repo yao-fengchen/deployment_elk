@@ -26,7 +26,7 @@
        "export": "es",
        "format": "ecs",
        "es.addresses": "http://elasticsearch:9200",
-       "es.index": "sysflow-alerts",
+       "es.index": "alerts",
        "es.bulk.numWorkers": "1",
        "buffer": "50"
       },
@@ -36,7 +36,7 @@
        "export": "es",
        "format": "ecs",
        "es.addresses": "http://elasticsearch:9200",
-       "es.index": "sysflow-events",
+       "es.index": "events",
        "es.bulk.numWorkers": "1",
        "buffer": "1000"
       }

@@ -1,5 +1,6 @@
 run: stop
-	docker run --privileged=true --name attack attack > result.txt
+	@docker run --privileged=true --name attack attack > result.txt
+	@./createSpecialContainer.sh
 
 stop:
 	docker rm attack 2>/dev/null || true
