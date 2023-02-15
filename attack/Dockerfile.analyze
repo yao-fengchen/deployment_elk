@@ -11,6 +11,6 @@ RUN apt-get install -y python3 \
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
-COPY attackAnalyze.sh /app
+COPY attackanalyze.sh /app
 COPY getinfo.py /app
-CMD ["/bin/sh", "./attackAnalyze.sh"]
+CMD ["/bin/sh", "./attackanalyze.sh"]
